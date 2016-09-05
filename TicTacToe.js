@@ -34,16 +34,27 @@ var matrizGanadora = [[1, 1, 1,
 
 var matrizJugador1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var matrizJugador2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-var arregloElementosJugador1 = [];
+
+window.onload = (function(){
+	if(localStorage.getItem("matrizJugador1") !== null){
+		matrizJugador1 = localStorage.getItem("matrizJugador1");
+
+		for(i = 0; i < matrizJugador1.length; i++){
+			var element = document.getElementById("col1");
+			console.info(element)
+			element.innerHTML = "X";
+			element.removeAttribute("onclick");
+		}
+	};
+});
+
 
 function fill(element, indice){
+	console.log(element);
 	if(turn == 1){
 		element.innerHTML = "X";
 		matrizJugador1[indice] = 1;
-		arregloElementosJugador1.push(element);
-		console.info(arregloElementosJugador1);
 		localStorage.setItem("matrizJugador1", matrizJugador1);
-		localStorage.setItem("indiceJugador1", indice);
 		jugadorUnoGano = checkIfWin(matrizJugador1);
 		if(jugadorUnoGano){
 			window.alert("Gano el jugador 1");
@@ -54,9 +65,6 @@ function fill(element, indice){
 	else{
 		element.innerHTML = "O";
 		matrizJugador2[indice] = 1;
-		//arregloElementosJugador2.push(element);
-		localStorage.setItem("elementoJugador2", element);
-		localStorage.setItem("indiceJugador2", indice);
 		jugadorDosGano = checkIfWin(matrizJugador2);
 		if(jugadorDosGano){
 			window.alert("Gano el jugador 2");
@@ -64,9 +72,6 @@ function fill(element, indice){
 		}
 		turn = 1;
 	}
-
-	localStorage.setItem("arregloElementosJugador1", arregloElementosJugador1);
-	//localStorage.setItem("arregloElementosJugador2", arregloElementosJugador2);//
 
 	element.removeAttribute("onclick");
 }
