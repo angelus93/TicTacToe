@@ -6,24 +6,31 @@
 	<title>TicTacToe</title>
 </head>
 <body>
+	<div>
+		<p id="jugador1"></p>
+		<p id="ganados1"></p>
+		<p id="jugador2"></p>
+		<p id="ganados2"></p>
+	</div>
 	<div class="grid">
-		<div id="row1">
-			<div id="col1" onclick="fill(this, 0)"></div>
-			<div id="col2" onclick="fill(this, 1)"></div>
-			<div id="col3" onclick="fill(this, 2)"></div>
+		<div id="col1">
+			<div class="row" id="row1" onclick="fill(this, 0)"></div>
+			<div class="row" id="row2" onclick="fill(this, 1)"></div>
+			<div class="row" id="row3" onclick="fill(this, 2)"></div>
 		</div>
-		<div id="row2">
-			<div id="col4" onclick="fill(this, 3)"></div>
-			<div id="col5" onclick="fill(this, 4)"></div>
-			<div id="col6" onclick="fill(this, 5)"></div>
+		<div id="col2">
+			<div class="row" id="row4" onclick="fill(this, 3)"></div>
+			<div class="row" id="row5" onclick="fill(this, 4)"></div>
+			<div class="row" id="row6" onclick="fill(this, 5)"></div>
 		</div>
-		<div id="row3">
-			<div id="col7" onclick="fill(this, 6)"></div>
-			<div id="col8" onclick="fill(this, 7)"></div>
-			<div id="col9" onclick="fill(this, 8)"></div>
+		<div id="col3">
+			<div class="row" id="row7" onclick="fill(this, 6)"></div>
+			<div class="row" id="row8" onclick="fill(this, 7)"></div>
+			<div class="row" id="row9" onclick="fill(this, 8)"></div>
 		</div>
 	</div>
 
-	<button type="button" onclick="reset()">Jugar de nuevo</button>
+	<button type="button" onclick="reset()">Reset Game</button>
+	<button type="button" onclick="limpiarTablero()">Limpiar Tablero</button>
 </body>
 </html>
