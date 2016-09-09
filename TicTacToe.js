@@ -34,6 +34,8 @@ var matrizGanadora = [[1, 1, 1,
 					0, 0, 0,
 					1, 1, 1]];
 
+var matrizGanadoraColorear = [];
+
 function Jugador(name, color, matrizJugador, juegosGanados){
 	this.name = name;
 	this.color = color;
@@ -79,7 +81,7 @@ window.onload = (function(){
 function fillWithLocalStorage(matrizJugador, jugador, juegosGanados){
 	for(var i = 0; i < matrizJugador.length; i++){
 		//console.info(matrizJugador);
-		if(matrizJugador[i] == "1"){
+		if(matrizJugador[i] == 1){
 			var num = (i+1).toString();
 			var element = document.getElementById("row"+num);
 			if(jugador == 1){
@@ -107,6 +109,7 @@ function fill(element, indice){
 		localStorage.setItem("matrizJugador1", JSON.stringify(jugador1.matrizJugador));
 		var jugadorUnoGano = checkIfWin(jugador1.matrizJugador);
 		if(jugadorUnoGano){
+			colorearGanador(turn);
 			jugador1.juegosGanados += 1;
 			document.getElementById("ganados1").innerHTML = jugador1.juegosGanados;
 			localStorage.setItem("juegosGanados1", JSON.stringify(jugador1.juegosGanados));
@@ -122,6 +125,7 @@ function fill(element, indice){
 		localStorage.setItem("matrizJugador2", JSON.stringify(jugador2.matrizJugador));
 		var jugadorDosGano = checkIfWin(jugador2.matrizJugador);
 		if(jugadorDosGano){
+			colorearGanador(turn);
 			jugador2.juegosGanados += 1;
 			document.getElementById("ganados2").innerHTML = jugador2.juegosGanados;
 			localStorage.setItem("juegosGanados2", JSON.stringify(jugador2.juegosGanados));
@@ -155,12 +159,29 @@ function checkIfWin(matrizJugador){
 			}
 
 			if(cont == 3){
+				matrizGanadoraColorear = matrizGanadora[i];
 				return true;
 			}
 		}
 	}
 
 	return false;
+}
+
+function colorearGanador(jugador){
+	for(var i = 0; i < matrizGanadoraColorear.length; i++){
+		if(matrizGanadoraColorear[i] == 1){
+			var num = (i+1).toString();
+			var element = document.getElementById("row"+num);
+			if(jugador == 1){
+				element.style.borderColor = jugador1.color;
+			}
+			else if (jugador == 2){
+				element.style.borderColor = jugador2.color;
+			}
+			
+		}
+	}
 }
 
 function reset(){
